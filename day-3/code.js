@@ -1,52 +1,58 @@
 (function(){
     document.getElementById("submit").addEventListener("click", function(event){
-        var location = {
-            'x': 0,
-            'y': 0,
-            'deliveries': {},
-            'total': 0,
+        function Santa(deliveries){
+            this.x = 0;
+            this.y = 0;
+            var map = deliveries;
 
-            get location(){
+            this.getLocation = function(){
                 return this.x + '|' + this.y;
-            },
+            }
 
-            'delivery': function(){
-                if(this.delivery[this.location]){
-                    this.delivery[this.location]++;
+            this.delivery = function(){
+                if(map[this.getLocation()]){
+                    map[this.getLocation()]++;
                 }
                 else{
-                    this.delivery[this.location] = 1;
-                    this.total++;
+                    map[this.getLocation()] = 1;
+                    map.total++;
                 }
             }
-        };
+        }
+
         // Read in directions
         var data = document.getElementById("instructions").value;
+        var deliveries = {'total': 0};
+        var santa = new Santa(deliveries);
+        var roboSanta = new Santa(deliveries);
+        var currentSanta = null;
 
-        // Mark the first delivery
-        location.delivery();
+        // Mark the first deliveries
+        santa.delivery();
+        roboSanta.delivery();
 
         for(var i = 0; i < data.length ; i++){
+            currentSanta = i % 2 ? santa : roboSanta;
             // Move to the correct location
             switch(data[i]){
                 case '^':
-                    location.y++;
-                    location.delivery();
+                    currentSanta.y++;
+                    currentSanta.delivery();
                     break;
                 case 'v':
-                    location.y--;
-                    location.delivery();
+                    currentSanta.y--;
+                    currentSanta.delivery();
                     break;
                 case '>':
-                    location.x++;
-                    location.delivery();
+                    currentSanta.x++;
+                    currentSanta.delivery();
                     break;
                 case '<':
-                    location.x--;
-                    location.delivery();
+                    currentSanta.x--;
+                    currentSanta.delivery();
                     break;
             }
         }
-        alert(location.total);
+        alert(deliveries.total);
     });
 })();
