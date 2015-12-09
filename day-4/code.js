@@ -29,9 +29,11 @@
         },['http://advent-of-code.io:8888/day-4/bower_components/blueimp-md5/js/md5.min.js',
            'http://advent-of-code.io:8888/day-4/bower_components/q/q.js']);
 
+        console.log(new Date());
         var worker1 = worker(0, 20000000, key);
         worker1.then(function(response){
             console.log(response);
+            console.log(new Date());
         }, function(response){
             console.log( "an error occured" );
         }, function(msg){
@@ -41,6 +43,7 @@
         var worker2 = worker(1, 20000000, key);
         worker2.then(function(response){
             console.log(response);
+            console.log(new Date());
         }, function(response){
             console.log( "an error occured" );
         }, function(msg){
