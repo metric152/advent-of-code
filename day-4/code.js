@@ -8,9 +8,12 @@
         * Set up a web worker to crank through all the posibilities
         * https://github.com/cdsanchez/SimpleWorker
         * See if you can skip numbers by groups of 100 then work back if you hit it
+        *
         * NOTES
         * Doesn't use the entire Q chain (reject, notify)
         * Needs a way to stop the worker
+        *
+        * Worker Notes: http://www.html5rocks.com/en/tutorials/workers/basics/
         **/
         var worker = SimpleWorker(function(start, finish, key){
             var result = "";
