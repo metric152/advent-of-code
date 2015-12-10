@@ -1,0 +1,34 @@
+{
+  "name": "SimpleWorker",
+  "description": "Inline web workers + promises",
+  "main": "SimpleWorker.js",
+  "keywords": [
+    "promise",
+    "web-workers"
+  ],
+  "authors": [
+    "cdsanchez"
+  ],
+  "license": "MIT",
+  "homepage": "http://cdsanchez.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "q": "~0.9.6"
+  },
+  "_release": "dd6497bfd2",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "dd6497bfd2574c9b76ef69c119f06fc7ebbc9e9a"
+  },
+  "_source": "git://github.com/cdsanchez/SimpleWorker.git",
+  "_target": "*",
+  "_originalSource": "SimpleWorker",
+  "_direct": true
+}
