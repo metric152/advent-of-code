@@ -8,19 +8,23 @@
 		var OFF = "off";
 		var TOGGLE = "togge";
 
-        function lightOn(light){
+        function lightOn(light, amount){
             // If light is on leave it alone
-            if(grid[light]) return;
+            if(grid[light]){
+                grid[light] += amount;
+            }
+            else{
+                grid[light] = amount;
+            }
 
-            grid[light] = 1;
-            lights++;
+            lights += amount;
         }
 
         function lightOff(light){
             // If the light is off leave it off
-            if(!grid[light]) return;
+            if(!grid[light] || grid[light] === 0) return;
 
-            grid[light] = 0;
+            grid[light]--;
             lights--;
         }
 
@@ -37,13 +41,13 @@
 
                 switch(action){
                     case ON:
-                        lightOn(light);
+                        lightOn(light, 1);
                     break;
                     case OFF:
-                        lightOff(light)
+                        lightOff(light);
                     break;
                     case TOGGLE:
-                        (!grid[light] || grid[light] === 0) ? lightOn(light): lightOff(light);
+                        lightOn(light, 2);
                     break;
                 }
 
