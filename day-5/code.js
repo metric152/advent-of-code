@@ -5,7 +5,7 @@
         var rule1 = /([aeiou])/gi; // just vowels
         var rule2 = /(\w)\1+/gi; // any pair of letters (aa,bb)
         var rule3 = /(ab)+|(cd)+|(pq)+|(xy)+/gi; // matches to avoid
-        var rule4 = /(..).*\1/gi; // grab two characters then look at whole screen and look for repeat
+        var rule4 = /(..).*\1/gi; // grab two characters then look at whole string and look for repeat
         var rule5 = /(.).\1/gi; // grab one character and look for the next and see if the previous one repeats
         var total = 0;
 		/**
