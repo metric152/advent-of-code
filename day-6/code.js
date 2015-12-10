@@ -8,28 +8,10 @@
 		var OFF = "off";
 		var TOGGLE = "togge";
 
-		// Create the grid
-		function createGrid(columns, rows){
-			var finishedGrid = [];
-			var row = [];
-
-			// Create columns
-			for(var i = 0; i < columns; i++){
-				row[i] = 0;
-			}
-
-			// Add rows to grid
-			for(var i = 0; i < rows;i++){
-				finishedGrid.push(row.concat());
-			}
-
-			return finishedGrid;
-		}
-
         function lightOn(light){
             // If light is on leave it alone
             if(grid[light]) return;
-            
+
             grid[light] = 1;
             lights++;
         }
@@ -44,7 +26,6 @@
 
 		// Make changes to the grid
 		function updateGridWorker(x1, y1, x2, y2, action){
-			// TODO Check each light before adding or subtracting from the overall total
 			console.log( arguments );
             var active = true;
             var light = "";
@@ -81,7 +62,6 @@
 
 		// Look through the list of commands
 		function parseCommands(){
-
 			// Loop through commands
 			data.forEach(function(instruction){
 				var regex = /(\w.*) (\d+),(\d+) \w+ (\d+),(\d+)/gi; // turn on 489,959 through 759,964
@@ -111,9 +91,6 @@
 
             console.log(lights);
 		}
-
-		// Create the grid
-		//grid = createGrid(1000, 1000);
 
 		// Run the instructions
 		parseCommands();
