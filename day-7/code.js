@@ -1,7 +1,14 @@
 (function(){
 	document.getElementById("submit").addEventListener("click", function(event){
 		var data = document.getElementById("instructions").value.split("\n");
-        circuit = {};
+        circuit = {
+    		'reset': function(){
+    			for(var val in this){
+    				var register = this[val];
+    				if(register.val) register.val = null;
+    			}
+    		}
+        };
         var getValueWorker = null;
 
         var AND = "AND";
@@ -25,8 +32,15 @@
                 // Check for num vs circuit position
                 if(+result[0] >= 0){
                     circuit[result[1]] = {
+                		'val': null,
                         get value(){
-                            return +result[0];
+                			if(this.val) return this.val;
+                			
+                			this.val = +result[0];
+                            return this.val;
+                        },
+                        set value(val){
+                        	this.val = val;
                         }
                     };
                 }
@@ -38,6 +52,9 @@
                             this.val = circuit[result[0]].value;
 
                             return this.val;
+                        },
+                        set value(val){
+                        	this.val = val;
                         }
                     }
                 }
@@ -65,6 +82,9 @@
                                 }
                                 this.val = circuit[result[0]].value & circuit[result[2]].value;
                                 return this.val;
+                            },
+                            set value(val){
+                            	this.val = val;
                             }
                         };
                     break;
@@ -76,6 +96,9 @@
 
                                 this.val = circuit[result[0]].value | circuit[result[2]].value;
                                 return this.val;
+                            },
+                            set value(val){
+                            	this.val = val;
                             }
                         };
                     break;
@@ -87,6 +110,9 @@
 
                                 this.val = circuit[result[0]].value << +result[2];
                                 return this.val;
+                            },
+                            set value(val){
+                            	this.val = val;
                             }
                         }
                     break;
@@ -98,6 +124,9 @@
 
                                 this.val = circuit[result[0]].value >>> +result[2];
                                 return this.val;
+                            },
+                            set value(val){
+                            	this.val = val;
                             }
                         }
                     break;
@@ -125,11 +154,20 @@
 
                         this.val = tmp;
                         return this.val;
+                    },
+                    set value(val){
+                    	this.val = val;
                     }
                 }
                 return;
             }
         });
-        console.log( circuit );
+        
+        var tmp = circuit.a.value;
+        
+        console.log( "a:" + tmp );
+        circuit.reset();
+        circuit.b.value = tmp;
+        console.log( "a:" + circuit.a.value );
 	});
 })();
